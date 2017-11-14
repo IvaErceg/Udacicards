@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Deck from './Deck';
-
+import { connect } from 'react-redux';
+import { getDecks } from '../actions';
 
 class DeckList extends React.Component {
-    state = {
-        decks: [{id: 1, title: 'React', cards: 20}, {id: 2, title: 'Redux', cards: 20}, {id: 3, title: 'JavaScript', cards: 20}]
-    };
+    componentDidMount() {
+        this.props.getDecks();
+    }
+
+    _renderItem = ({ item }) => (
+        <Deck {...item} />)
+
     render() {
-        const {decks} = this.state;
+        console.log(this.props.decks);
         return (
             <View style={styles.container}>
-                {decks.map(deck =>  <Deck key={deck.id} title={deck.title} cards={deck.cards}/>)}
-            </View>
-        )
+                this.props.decks.map(deck => <Deck title={deck.title} card={deck.cards}/>)
+            </View>)
     }
 }
 
@@ -29,7 +33,12 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 24
     }
-  });
+});
 
+function mapStateToProps(state) {
+    return {
+        decks: state.decks
+    }
+}
 
-export default DeckList;
+export default connect(mapStateToProps, { getDecks })(DeckList);

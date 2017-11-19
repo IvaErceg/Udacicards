@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Button from './Button';
+import { connect } from 'react-redux';
+import { removeCard } from '../actions';
 
-class Deck extends React.Component {
+class Card extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={this.props.onPressItem}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>{this.props.title}</Text>
-                    <Text>{this.props.cards || 0}</Text>
-                    <Button onPressItem={this.props.removeItem}>delete</Button>
+                    <Text>{this.props.question}</Text>
+                    <Text>{this.props.answer}</Text>
+                    <Button onPressItem={()=> console.log(this.props.question)}>Delete</Button>
+                    <Button>Edit</Button>
                 </View>
-            </TouchableOpacity>
         )
     }
 }
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         width: 200,
-        height: 100,
+        height: 200,
         margin: 5
     },
     title: {
@@ -37,5 +38,4 @@ const styles = StyleSheet.create({
     }
 });
 
-
-export default Deck;
+export default connect(null, { removeCard })(Card);

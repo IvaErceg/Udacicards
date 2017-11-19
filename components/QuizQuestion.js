@@ -2,16 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Button from './Button';
 
-class Deck extends React.Component {
+export default class QuizQuestion extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={this.props.onPressItem}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>{this.props.title}</Text>
-                    <Text>{this.props.cards || 0}</Text>
-                    <Button onPressItem={this.props.removeItem}>delete</Button>
+                    <Text>Test</Text>
+                    <Button>Flip</Button>
                 </View>
-            </TouchableOpacity>
         )
     }
 }
@@ -25,17 +22,14 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 3,
         position: 'relative',
-        justifyContent: "center",
-        alignItems: 'center',
+        justifyContent: "space-between",
+        alignItems: "center",
         padding: 20,
         width: 200,
-        height: 100,
+        height: 400,
         margin: 5
     },
     title: {
         fontSize: 20,
     }
 });
-
-
-export default Deck;

@@ -1,22 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import Deck from './Deck';
 import { connect } from 'react-redux';
 import { getDecks } from '../actions';
+import { removeDeck } from '../actions';
 
 class DeckList extends React.Component {
+    static navigationOptions = {
+        header: null,
+      };
     componentDidMount() {
         this.props.getDecks();
     }
 
-    _renderItem = ({ item }) => (
-        <Deck {...item} />)
 
     render() {
-        console.log(this.props.decks);
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                this.props.decks.map(deck => <Deck title={deck.title} card={deck.cards}/>)
+                {this.props.decks.map(deck => <Deck removeItem={() => {this.props.removeDeck(deck.title)}} onPressItem={() => navigate('DeckDetails', {deck: deck.title})} title={deck.title} cards={deck.cards} key={deck.id}/>)}
             </View>)
     }
 }
@@ -41,4 +43,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getDecks })(DeckList);
+export default connect(mapStateToProps, { getDecks, removeDeck })(DeckList);

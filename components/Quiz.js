@@ -43,11 +43,11 @@ export class Quiz extends Component {
 
         return (
             <View style={styles.container}>
-                <Card style={{ color: 'green' }}>
-                    <Text>
+                <Card>
+                    <Text style={{alignSelf:'flex-end', marginBottom:'25%'}}>
                         {current} / {questions.length}
                     </Text>
-                    <Text>{flipped
+                    <Text style={styles.text}>{flipped
                         ? questions[current - 1].answer
                         : questions[current - 1].question}
                     </Text>
@@ -136,21 +136,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    card: {
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: 'yellow'
-    },
     buttons: {
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    title: {
-        fontSize: 28,
-    },
     text: {
-        fontSize: 32,
-        fontWeight: 'bold'
+        fontSize: 26
     }
 });
 

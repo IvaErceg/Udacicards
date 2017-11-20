@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 3,
         position: 'relative',
-        justifyContent: "center",
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: 10,
         width: 200,
         height: 200,
         margin: 5

@@ -19,7 +19,7 @@ class DeckDetails extends React.Component {
                 <Card><Text style={styles.text}>{this.props.deck.cards} {this.props.deck.cards === 1 ? 'card' : 'cards'}</Text></Card>
                 <View>
                     <Button onPressItem={() => navigate('NewCard', {deck: this.props.deck.title})}>Add Card</Button>
-                    <Button onPressItem={() => navigate('Quiz',  {deck: this.props.deck.title})}>Start Quiz</Button>
+                    <Button disabled={this.props.deck.cards < 1 ? true : false} onPressItem={() => navigate('Quiz',  {deck: this.props.deck.title})}>Start Quiz</Button>
                 </View>
             </View>
 

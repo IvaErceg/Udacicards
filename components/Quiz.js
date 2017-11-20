@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Button from './Button';
-import { Animated, ScrollView } from 'react-native'
 import { connect } from 'react-redux';
 import Card from './Card';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 export class Quiz extends Component {
     state = {
@@ -77,7 +77,7 @@ export class Quiz extends Component {
     showScore() {
         const { correct } = this.state
         const { questions } = this.props
-
+        clearLocalNotification().then(setLocalNotification);
         return (
             <View style={styles.container}>
                 <Text>

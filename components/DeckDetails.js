@@ -15,8 +15,8 @@ class DeckDetails extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>{this.props.deck.title}</Text>
-                <Card><Text style={styles.text}>{this.props.deck.cards}</Text></Card>
+                <Text style={styles.text}>{this.props.deck.title.toUpperCase()}</Text>
+                <Card><Text style={styles.text}>{this.props.deck.cards} {this.props.deck.cards === 1 ? 'card' : 'cards'}</Text></Card>
                 <View>
                     <Button onPressItem={() => navigate('NewCard', {deck: this.props.deck.title})}>Add Card</Button>
                     <Button onPressItem={() => navigate('Quiz',  {deck: this.props.deck.title})}>Start Quiz</Button>
@@ -39,9 +39,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around'
-    },
-    title: {
-        fontSize: 24,
     },
     text: {
         fontSize: 24,

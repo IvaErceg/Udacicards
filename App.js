@@ -11,8 +11,7 @@ import { autoRehydrate, persistStore } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import DeckDetails from './components/DeckDetails';
 import NewCard from './components/NewCard';
-import CardList from './components/CardList';
-import QuizQuestion from './components/QuizQuestion';
+import Quiz from './components/Quiz';
 
 
 const Tabs = TabNavigator({
@@ -20,14 +19,12 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'All Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions: {
       tabBarLabel: 'New Deck',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
     }
   }
 }, {
@@ -35,7 +32,6 @@ const Tabs = TabNavigator({
       header: null
     },
     tabBarOptions: {
-      activeTintColor: 'white',
       style: {
         height: 60,
         paddingTop: 15,
@@ -44,34 +40,67 @@ const Tabs = TabNavigator({
     }
   }
 )
+
+const DeckDetailsWithTabs = TabNavigator({
+  DeckDetails: {
+    screen: DeckDetails,
+    navigationOptions: {
+      tabBarLabel: 'Details',
+    }
+  },
+  Home: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'All Decks',
+    }
+  },
+  New: {
+    screen: NewDeck,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+    }
+  },
+
+},
+  {
+    navigationOptions: {
+      header: null
+    },
+    tabBarOptions: {
+      style: {
+        height: 60,
+        paddingTop: 15,
+        backgroundColor: 'purple'
+      }
+    }
+  }
+)
+
 const MainNavigator = StackNavigator({
   DeckList: {
     screen: Tabs,
   },
   DeckDetails: {
-    screen: DeckDetails,
+    screen: DeckDetailsWithTabs,
   },
   NewCard: {
     screen: NewCard,
   },
-  CardList: {
-    screen: CardList,
-  },
-  QuizQuestion: {
-    screen: QuizQuestion,
+  Quiz: {
+    screen: Quiz,
   },
 },
 );
 
 const store = createStore(reducer, undefined, autoRehydrate());
-persistStore(store, {storage: AsyncStorage});
+persistStore(store, { storage: AsyncStorage });
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           <StatusBar translucent style={{ backgroundColor: 'purple' }} />
-          <MainNavigator/>
+          <MainNavigator />
         </View>
       </Provider>
     )

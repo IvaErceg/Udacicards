@@ -1,20 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Button from './Button';
-import { connect } from 'react-redux';
-import { removeCard } from '../actions';
 
-class Card extends React.Component {
-    render() {
-        return (
-                <View style={styles.container}>
-                    <Text>{this.props.question}</Text>
-                    <Text>{this.props.answer}</Text>
-                    <Button onPressItem={()=> console.log(this.props.question)}>Delete</Button>
-                    <Button>Edit</Button>
-                </View>
-        )
-    }
+export default Card = (props) => {
+    return (
+        <View style={styles.container}>
+            {props.children}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -32,10 +25,5 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         margin: 5
-    },
-    title: {
-        fontSize: 20,
     }
 });
-
-export default connect(null, { removeCard })(Card);

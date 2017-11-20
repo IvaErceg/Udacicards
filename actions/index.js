@@ -13,18 +13,18 @@ export function addDeck(title) {
     }
 };
 
-export function removeDeck(title) {
+export function removeDeck(id) {
     return { 
         type: 'REMOVE_DECK',
-        payload: title
+        payload: id
      
      }
  };
 
- export function addCard(title, question) {
+ export function addCard(id, question) {
     return { 
         type: 'ADD_CARD',
-        title: title,
+        id: id,
         payload: question
      
      }

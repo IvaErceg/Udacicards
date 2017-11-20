@@ -12,7 +12,7 @@ class NewDeck extends React.Component {
     
     this.props.addDeck(this.state.text);
     this.setState({ text: '' })
-    this.props.navigation.goBack();
+    this.props.navigation.navigate('DeckList');;
   }
 
   render() {

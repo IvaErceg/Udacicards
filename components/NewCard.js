@@ -3,6 +3,8 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity, ScrollView, AsyncS
 import { connect } from 'react-redux';
 import { addCard} from '../actions';
 import Button from './Button';
+import { Keyboard } from 'react-native';
+
 
 class NewCard extends React.Component {
 static navigationOptions = ({ navigation }) => ({
@@ -15,8 +17,9 @@ static navigationOptions = ({ navigation }) => ({
 
   saveCard = () => {
     const question = {question: this.state.question, answer: this.state.answer}
-    this.props.addCard(this.props.deck.title, question);
-    this.props.navigation.goBack(); //this does not trigger rerender!
+    this.props.addCard(this.props.deck.id, question);
+    this.props.navigation.navigate('DeckDetails', {deck: this.props.deck.title});
+    Keyboard.dismiss(); 
   }
 
   render() {

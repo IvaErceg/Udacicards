@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
 import Deck from './Deck';
 import { connect } from 'react-redux';
 import { getDecks } from '../actions';
@@ -9,6 +9,18 @@ class DeckList extends React.Component {
     static navigationOptions = {
         header: null,
       };
+
+      constructor() {
+        super();
+        if (Platform.OS === 'android') {
+          UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+        }
+      }
+
+      componentWillUpdate(){
+        LayoutAnimation.spring();
+    }
+
     componentDidMount() {
         this.props.getDecks();
     }
@@ -18,7 +30,7 @@ class DeckList extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                {this.props.decks.map(deck => <Deck removeItem={() => {this.props.removeDeck(deck.title)}} onPressItem={() => navigate('DeckDetails', {deck: deck.title})} title={deck.title} cards={deck.cards} key={deck.id}/>)}
+                {this.props.decks.map(deck => <Deck removeItem={() => {this.props.removeDeck(deck.id)}} onPressItem={() => navigate('DeckDetails', {deck: deck.title})} title={deck.title} cards={deck.cards} key={deck.id}/>)}
             </View>)
     }
 }

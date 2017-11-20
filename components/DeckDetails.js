@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Button from './Button';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
+import Card from './Card';
 
 class DeckDetails extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -15,11 +16,10 @@ class DeckDetails extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>{this.props.deck.title}</Text>
-                <Text style={styles.title}>{this.props.deck.cards}</Text>
+                <Card><Text style={styles.text}>{this.props.deck.cards}</Text></Card>
                 <View>
                     <Button onPressItem={() => navigate('NewCard', {deck: this.props.deck.title})}>Add Card</Button>
-                    <Button onPressItem={() => navigate('QuizQuestion',  {deck: this.props.deck.title})}>Start Quiz</Button>
-                    <Button onPressItem={() => navigate('CardList', {deck: this.props.deck.title})}>Show Cards</Button>
+                    <Button onPressItem={() => navigate('Quiz',  {deck: this.props.deck.title})}>Start Quiz</Button>
                 </View>
             </View>
 
@@ -42,6 +42,10 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+    },
+    text: {
+        fontSize: 24,
+        fontWeight: 'bold' 
     }
 });
 

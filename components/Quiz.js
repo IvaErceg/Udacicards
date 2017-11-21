@@ -38,8 +38,9 @@ export class Quiz extends Component {
     }
 
     showQuestions = () => {
-        const { questions } = this.props
         const { current, correct, flipped } = this.state
+        const { questions } = this.props
+        const index = current - 1;
 
         return (
             <View style={styles.container}>
@@ -48,8 +49,8 @@ export class Quiz extends Component {
                         {current} / {questions.length}
                     </Text>
                     <Text style={styles.text}>{flipped
-                        ? questions[current - 1].answer
-                        : questions[current - 1].question}
+                        ? questions[index].answer
+                        : questions[index].question}
                     </Text>
                 </Card>
                 <View>
@@ -119,17 +120,6 @@ export class Quiz extends Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
-    const title = ownProps.navigation.state.params.deck;
-    const deck = state.decks.filter(deck => deck.title === title)[0];
-    const questions = deck.questions;
-    return {
-        questions,
-        deck
-    }
-}
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -144,5 +134,15 @@ const styles = StyleSheet.create({
         fontSize: 26
     }
 });
+
+function mapStateToProps(state, ownProps) {
+    const title = ownProps.navigation.state.params.deck;
+    const deck = state.decks.filter(deck => deck.title === title)[0];
+    const questions = deck.questions;
+    return {
+        questions,
+        deck
+    }
+}
 
 export default connect(mapStateToProps)(Quiz)

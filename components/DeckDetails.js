@@ -27,13 +27,6 @@ class DeckDetails extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
-    return {
-        deck: state.decks.filter(deck => deck.title === ownProps.navigation.state.params.deck)[0]
-    }
-}
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -45,5 +38,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold' 
     }
 });
+
+function mapStateToProps(state, ownProps) {
+    return {
+        deck: state.decks.filter(deck => deck.title === ownProps.navigation.state.params.deck)[0]
+    }
+}
 
 export default connect(mapStateToProps, { addCard })(DeckDetails);

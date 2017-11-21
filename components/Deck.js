@@ -3,14 +3,13 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Button from './Button';
 import { FontAwesome } from '@expo/vector-icons'
 
-class Deck extends React.Component {
-    render() {
+export default Deck = (props) => {
         return (
-            <TouchableOpacity onPress={this.props.onPressItem}>
+            <TouchableOpacity onPress={props.onPressItem}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>{this.props.title}</Text>
-                    <Text>{this.props.cards || 0} {this.props.cards === 1 ? 'card' : 'cards'}</Text>
-                    <Button onPressItem={this.props.removeItem}>
+                    <Text style={styles.title}>{props.title}</Text>
+                    <Text>{props.cards || 0} {props.cards === 1 ? 'card' : 'cards'}</Text>
+                    <Button onPressItem={props.removeItem}>
                         <FontAwesome name='trash' size={20}></FontAwesome>
                     </Button>
                 </View>

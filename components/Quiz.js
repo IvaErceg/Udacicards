@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Button from './Button';
 import { connect } from 'react-redux';
 import Card from './Card';
@@ -20,7 +20,8 @@ export class Quiz extends Component {
 
     onCorrect = () => {
         const { current } = this.state
-        const { question, answer } = this.props.questions[current - 1]
+        const index = current - 1;
+        const { question, answer } = this.props.questions[index]
 
         this.setState(prevState => ({
             flipped: false,

@@ -16,7 +16,6 @@ export default Deck = (props) => {
             </TouchableOpacity>
         )
     }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -38,6 +37,3 @@ const styles = StyleSheet.create({
         fontSize: 20,
     }
 });
-
-
-export default Deck;

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
+import { StyleSheet, View, FlatList, LayoutAnimation, UIManager, Platform } from 'react-native';
 import Deck from './Deck';
 import { connect } from 'react-redux';
 import { getDecks } from '../actions';
 import { removeDeck } from '../actions';
+import { style } from 'expo/src/Font';
 
 class DeckList extends React.Component {
     static navigationOptions = {
@@ -29,9 +30,17 @@ class DeckList extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
-                {this.props.decks.map(deck => <Deck removeItem={() => {this.props.removeDeck(deck.id)}} onPressItem={() => navigate('DeckDetails', {deck: deck.title})} title={deck.title} cards={deck.cards} key={deck.id}/>)}
-            </View>)
+            <FlatList
+                data={this.props.decks}
+                contentContainerStyle={style.container}
+                renderItem={({ item }) => (
+                    <Deck
+                    removeItem={() => {this.props.removeDeck(deck.id)}}
+                    onPressItem={() => navigate('DeckDetails', {deck: deck.title})}
+                    title={deck.title} cards={deck.cards}/>)}
+                    keyExtractor={item => item.id}
+                    >
+            </FlatList>)
     }
 }
 

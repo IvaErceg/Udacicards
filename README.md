@@ -13,4 +13,4 @@ This is the third project in React Nanodegree. Udacicards is an React Native app
 * Redux
 * React-navigation
 
-Tested on Android device
+Tested on Android device using Expo

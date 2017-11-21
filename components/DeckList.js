@@ -9,16 +9,16 @@ import { style } from 'expo/src/Font';
 class DeckList extends React.Component {
     static navigationOptions = {
         header: null,
-      };
+    };
 
-      constructor() {
+    constructor() {
         super();
         if (Platform.OS === 'android') {
-          UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+            UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
         }
-      }
+    }
 
-      componentWillUpdate(){
+    componentWillUpdate() {
         LayoutAnimation.spring();
     }
 
@@ -32,21 +32,19 @@ class DeckList extends React.Component {
         return (
             <FlatList
                 data={this.props.decks}
-                contentContainerStyle={style.container}
+                contentContainerStyle={styles.container}
                 renderItem={({ item }) => (
                     <Deck
-                    removeItem={() => {this.props.removeDeck(deck.id)}}
-                    onPressItem={() => navigate('DeckDetails', {deck: deck.title})}
-                    title={deck.title} cards={deck.cards}/>)}
-                    keyExtractor={item => item.id}
-                    >
+                        removeItem={() => { this.props.removeDeck(item.id) }}
+                        onPressItem={() => navigate('DeckDetails', { deck: item.title })}
+                        title={item.title} cards={item.cards} />)}
+                keyExtractor={item => item.id}>
             </FlatList>)
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         padding: 30,
         alignItems: "center",
         justifyContent: "center",

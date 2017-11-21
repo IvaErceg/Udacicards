@@ -1,5 +1,5 @@
 import { REHYDRATE } from 'redux-persist/constants';
-import { GET_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from '../actions/index';
+import { GET_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from '../actions/types';
 
 export default (state = [], action) => {
     switch (action.type) {

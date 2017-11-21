@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import { GET_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from './index';
+import { GET_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from './types';
 
 export  function getDecks() {
     return {
